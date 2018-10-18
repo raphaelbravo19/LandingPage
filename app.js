@@ -10,7 +10,7 @@ function Aplicar () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({name: elemento.value, token: tokengen})
+      body: JSON.stringify({"name": elemento.value, "token": tokengen})
     
     }).then(function(response) {
       return response.json();
