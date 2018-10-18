@@ -3,13 +3,14 @@ function Aplicar () {
 	var elemento2 = document.getElementById("result")
 
 	if (elemento.value != "") {
-        fetch('https://better-ride-api.herokuapp.com/api/organizations', {
+		var tokengen= generate_token(12)
+        fetch('http://localhost:81/organizations', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({name: elemento.value})
+      body: JSON.stringify({name: elemento.value, token: tokengen})
     
     }).then(function(response) {
       return response.json();
@@ -18,7 +19,7 @@ function Aplicar () {
         elemento2.style.backgroundColor = "rgba(0,0,0,0.5)"
         elemento2.style.paddingTop = "50px"
     elemento2.innerHTML =`
-    <h2 class="mb-5">TOKEN: `+data.id+`</h2>`
+    <h2 class="mb-5">TOKEN: `+data.token+`</h2>`
     });
         
         }
