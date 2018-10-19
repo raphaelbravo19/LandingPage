@@ -4,24 +4,21 @@ function Aplicar () {
 
 	if (elemento.value != "") {
 		var tokengen= generate_token(12)
-        fetch('http://localhost:81/organizations', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({"name": elemento.value, "token": tokengen})
-    
-    }).then(function(response) {
-      return response.json();
-    }).then(function(data) {
+        $.ajax({
+            url: "http://localhost:81/organizations",
+            type: "POST",
+            data: {
+                name: elemento.value,
+                token: tokengen
+            }
+        }).done(function(data){
+            data = JSON.parse(data);
+            console.log(data);
+        })
         elemento2.className="col-xl-9 mx-auto"
         elemento2.style.backgroundColor = "rgba(0,0,0,0.5)"
         elemento2.style.paddingTop = "50px"
-    elemento2.innerHTML =`
-    <h2 class="mb-5">TOKEN: `+data.token+`</h2>`
-    });
-        
+        elemento2.innerHTML =` <h2 class="mb-5">TOKEN: `+tokengen+`</h2>`
         }
 }
 function generate_token(length){
