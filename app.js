@@ -5,7 +5,7 @@ function Aplicar () {
 	if (elemento.value != "") {
 		var tokengen= generate_token(12)
         $.ajax({
-            url: "http://localhost:81/organizations",
+            url: "https://vast-meadow-24979.herokuapp.com/organizations",
             type: "POST",
             data: {
                 name: elemento.value,
